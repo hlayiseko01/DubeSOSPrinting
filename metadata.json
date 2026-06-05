@@ -1,0 +1,6 @@
+{
+  "name": "DubeSOS Printing",
+  "description": "Professional document and photo printing services based in Tzaneen, Limpopo, South Africa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
