@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calculator, FileText, Image, ClipboardCheck, Plus, Minus, Send, Share2 } from 'lucide-react';
-import { BUSINESS_INFO, PRICING, PrintCategory, DocumentType, PhotoSize, PhotoFinish } from '../types';
+import { Calculator, FileText, Image, ClipboardCheck, Plus, Minus, Send, Share2, Gift } from 'lucide-react';
+import { BUSINESS_INFO, PRICING, PrintCategory, DocumentType, PhotoSize, PhotoFinish, FramedSize } from '../types';
 
 export default function PriceEstimator() {
   const [category, setCategory] = useState<PrintCategory>('document');
   const [docType, setDocType] = useState<DocumentType>('bw');
   const [photoSize, setPhotoSize] = useState<PhotoSize>('jumbo');
   const [photoFinish, setPhotoFinish] = useState<PhotoFinish>('glossy');
+  const [framedSize, setFramedSize] = useState<FramedSize>('normal');
   const [quantity, setQuantity] = useState<number>(1);
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
@@ -16,14 +17,16 @@ export default function PriceEstimator() {
     let pricePerUnit = 0;
     if (category === 'document') {
       pricePerUnit = PRICING.document[docType];
-    } else {
+    } else if (category === 'photo') {
       pricePerUnit = PRICING.photo[photoSize];
+    } else {
+      pricePerUnit = PRICING.framed[framedSize];
     }
     
     // Ensure quantity is positive
     const cleanQty = Math.max(1, Math.floor(quantity));
     setTotalPrice(pricePerUnit * cleanQty);
-  }, [category, docType, photoSize, quantity]);
+  }, [category, docType, photoSize, framedSize, quantity]);
 
   const handleQtyChange = (val: number) => {
     setQuantity(prev => {
@@ -52,12 +55,18 @@ export default function PriceEstimator() {
       selectedOption = docType === 'bw' 
         ? `Black & White (A4) @ R${PRICING.document.bw}/page`
         : `Vibrant Colour (A4) @ R${PRICING.document.color}/page`;
-    } else {
+    } else if (category === 'photo') {
       orderType = '📷 Photo Printing';
       selectedOption = photoSize === 'jumbo'
         ? `Jumbo Size 10×15 cm @ R${PRICING.photo.jumbo}/photo`
         : `A4 enlargement @ R${PRICING.photo.a4}/photo`;
       finishDetails = photoFinish === 'glossy' ? 'Glossy Finish (Premium)' : 'Matte Finish (Elegant)';
+    } else {
+      orderType = '🎁 A4 Framed Photo';
+      selectedOption = framedSize === 'normal'
+        ? `Normal A4 Framed Photo @ R${PRICING.framed.normal}/unit`
+        : `Customised A4 Framed Photo @ R${PRICING.framed.customised}/unit (Special moments / presents like Mother's/Father's Day)`;
+      finishDetails = 'Premium glass/wood frame with active photo formatting support';
     }
 
     const message = `Hello DubeSOS Printing! I'd like to place a printing order. Here is my estimate from your website:
@@ -65,8 +74,8 @@ export default function PriceEstimator() {
 ------------------------------------
 *ORDER TYPE:* ${orderType}
 *OPTION SELECTED:* ${selectedOption}
-*SPECIFICATION:* ${category === 'photo' ? `Finish: ${finishDetails}` : 'Double/Single Sided (Standard)'}
-*QUANTITY:* ${quantity} Page(s) / Print(s)
+*SPECIFICATION:* ${category === 'photo' ? `Finish: ${finishDetails}` : category === 'framed' ? `Frame spec: ${finishDetails}` : 'Double/Single Sided (Standard)'}
+*QUANTITY:* ${quantity} Page(s) / Frame(s) / Print(s)
 ------------------------------------
 *ESTIMATED TOTAL:* R ${totalPrice.toFixed(2)}
 
@@ -116,36 +125,51 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                 <label className="block text-xs font-bold text-gray-muted uppercase tracking-widest mb-3.5">
                   1. Select Print Type
                 </label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   
                   {/* Document Toggle */}
                   <button 
                     type="button"
                     onClick={() => { setCategory('document'); setQuantity(1); }}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                       category === 'document' 
                         ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
                         : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
                     }`}
                     id="btn-select-doc-type"
                   >
-                    <FileText className="w-6 h-6 mb-2" />
-                    <span className="font-bold text-sm tracking-tight">Documents</span>
+                    <FileText className="w-5 h-5 mb-2 sm:w-6 sm:h-6" />
+                    <span className="font-bold text-[11px] sm:text-xs tracking-tight">Documents</span>
                   </button>
 
                   {/* Photo Toggle */}
                   <button 
                     type="button"
                     onClick={() => { setCategory('photo'); setQuantity(1); }}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                       category === 'photo' 
                         ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
                         : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
                     }`}
                     id="btn-select-photo-type"
                   >
-                    <Image className="w-6 h-6 mb-2" />
-                    <span className="font-bold text-sm tracking-tight">Photo Prints</span>
+                    <Image className="w-5 h-5 mb-2 sm:w-6 sm:h-6" />
+                    <span className="font-bold text-[11px] sm:text-xs tracking-tight">Photo Prints</span>
+                  </button>
+
+                  {/* Framed Photo Toggle */}
+                  <button 
+                    type="button"
+                    onClick={() => { setCategory('framed'); setQuantity(1); }}
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                      category === 'framed' 
+                        ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
+                        : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
+                    }`}
+                    id="btn-select-framed-type"
+                  >
+                    <Gift className="w-5 h-5 mb-2 sm:w-6 sm:h-6" />
+                    <span className="font-bold text-[11px] sm:text-xs tracking-tight">Framed Photos</span>
                   </button>
 
                 </div>
@@ -191,7 +215,7 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                         Colour Paper (R5)
                       </button>
                     </motion.div>
-                  ) : (
+                  ) : category === 'photo' ? (
                     <motion.div
                       key="photo-specs"
                       initial={{ opacity: 0, y: 5 }}
@@ -258,6 +282,50 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                         </div>
                       </div>
                     </motion.div>
+                  ) : (
+                    <motion.div
+                      key="framed-specs"
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.2 }}
+                      className="space-y-4"
+                      id="framed-suboptions"
+                    >
+                      {/* Framed types */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setFramedSize('normal')}
+                          className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                            framedSize === 'normal'
+                              ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
+                              : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
+                          }`}
+                          id="opt-framed-normal"
+                        >
+                          Normal A4 Frame (R100)
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setFramedSize('customised')}
+                          className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                            framedSize === 'customised'
+                              ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
+                              : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
+                          }`}
+                          id="opt-framed-customised"
+                        >
+                          Customised Frame (R150)
+                        </button>
+                      </div>
+
+                      {/* Frame Description Info */}
+                      <div className="p-3.5 bg-brand-orange-light/50 border border-brand-orange/15 rounded-xl text-xs text-slate-700">
+                        <p className="font-bold text-brand-orange mb-1">💝 Splendid Gift Idea:</p>
+                        <p>Our customised frame option is beautifully styled and is best for celebrating special moments like Valentine’s, Anniversaries, Mother’s Day, or Father’s Day presents!</p>
+                      </div>
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -319,7 +387,7 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                 
                 {/* Specific calculations callout */}
                 <span className="block text-xs text-gray-muted mt-4 font-semibold italic">
-                  {quantity} unit(s) x R {category === 'document' ? PRICING.document[docType] : PRICING.photo[photoSize]}
+                  {quantity} unit(s) x R {category === 'document' ? PRICING.document[docType] : category === 'photo' ? PRICING.photo[photoSize] : PRICING.framed[framedSize]}
                 </span>
               </div>
 

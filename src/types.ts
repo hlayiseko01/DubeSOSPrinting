@@ -1,8 +1,9 @@
-export type PrintCategory = 'document' | 'photo';
+export type PrintCategory = 'document' | 'photo' | 'framed';
 
 export type DocumentType = 'bw' | 'color';
 export type PhotoSize = 'jumbo' | 'a4';
 export type PhotoFinish = 'glossy' | 'matte';
+export type FramedSize = 'normal' | 'customised';
 
 export interface PricingConfig {
   document: {
@@ -12,6 +13,10 @@ export interface PricingConfig {
   photo: {
     jumbo: number;
     a4: number;
+  };
+  framed: {
+    normal: number;
+    customised: number;
   };
 }
 
@@ -23,6 +28,10 @@ export const PRICING: PricingConfig = {
   photo: {
     jumbo: 15,  // R15
     a4: 40,     // R40
+  },
+  framed: {
+    normal: 100,      // R100
+    customised: 150,  // R150
   }
 };
 
