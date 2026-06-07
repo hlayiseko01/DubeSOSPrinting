@@ -66,7 +66,7 @@ ${message.trim()}`;
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto">
           
           {/* Left Column: Form */}
-          <div className="lg:col-span-6 bg-white border border-gray-light-border rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm" id="contact-form-container">
+          <div className="lg:col-span-6 bg-white border border-gray-light-border rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm w-full max-w-sm sm:max-w-md lg:max-w-none mx-auto" id="contact-form-container">
             <div>
               <h3 className="text-lg font-bold text-dark-main mb-2 flex items-center gap-2">
                 <MessageSquare className="w-5 h-5 text-brand-orange" />
@@ -137,7 +137,7 @@ ${message.trim()}`;
           </div>
 
           {/* Right Column: Physical Location & Details */}
-          <div className="lg:col-span-6 flex flex-col justify-between gap-6" id="contact-info-container">
+          <div className="lg:col-span-6 flex flex-col justify-between gap-6 w-full max-w-sm sm:max-w-md lg:max-w-none mx-auto" id="contact-info-container">
             
             {/* Location Panel */}
             <div className="bg-white border border-gray-light-border rounded-3xl p-6 sm:p-8 flex-1 shadow-sm">
