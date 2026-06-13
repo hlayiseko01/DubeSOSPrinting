@@ -115,69 +115,69 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
         </div>
 
         {/* Main Calculator Box */}
-        <div className="grid grid-cols-12 gap-4 sm:gap-8 items-stretch max-w-4xl mx-auto">
+        <div className="grid grid-cols-12 gap-6 sm:gap-8 items-stretch max-w-4xl mx-auto">
           
           {/* Controls Panel */}
-          <div className="col-span-12 md:col-span-7 bg-white border border-gray-light-border rounded-xl sm:rounded-3xl p-3 sm:p-8 hover:border-brand-orange/20 transition-all duration-300 flex flex-col justify-between shadow-sm w-full mx-auto" id="estimator-controls">
+          <div className="col-span-12 md:col-span-7 bg-white border border-gray-light-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:border-brand-orange/20 transition-all duration-300 flex flex-col justify-between shadow-sm w-full mx-auto" id="estimator-controls">
             <div>
               {/* Step 1: Select Type */}
-              <div className="mb-3.5 sm:mb-8">
-                <label className="block text-[8px] sm:text-[10px] md:text-xs font-bold text-gray-muted uppercase tracking-wider sm:tracking-widest mb-1 sm:mb-3">
+              <div className="mb-6 sm:mb-8">
+                <label className="block text-xs font-bold text-gray-muted uppercase tracking-widest mb-3">
                   1. Select Print Type
                 </label>
-                <div className="grid grid-cols-3 gap-1 sm:gap-3">
+                <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
                   
                   {/* Document Toggle */}
                   <button 
                     type="button"
                     onClick={() => { setCategory('document'); setQuantity(1); }}
-                    className={`flex flex-col items-center justify-center p-1 sm:p-3.5 rounded-lg sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
                       category === 'document' 
                         ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
                         : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
                     }`}
                     id="btn-select-doc-type"
                   >
-                    <FileText className="w-4 sm:w-6 h-4 sm:h-6 mb-0.5 sm:mb-2" />
-                    <span className="font-bold text-[8px] xs:text-[9.5px] sm:text-xs tracking-tight">Documents</span>
+                    <FileText className="w-5 sm:w-6 h-5 sm:h-6 mb-1.5 sm:mb-2" />
+                    <span className="font-bold text-[10px] sm:text-xs tracking-tight">Documents</span>
                   </button>
 
                   {/* Photo Toggle */}
                   <button 
                     type="button"
                     onClick={() => { setCategory('photo'); setQuantity(1); }}
-                    className={`flex flex-col items-center justify-center p-1 sm:p-3.5 rounded-lg sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
                       category === 'photo' 
                         ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
                         : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
                     }`}
                     id="btn-select-photo-type"
                   >
-                    <Image className="w-4 sm:w-6 h-4 sm:h-6 mb-0.5 sm:mb-2" />
-                    <span className="font-bold text-[8px] xs:text-[9.5px] sm:text-xs tracking-tight">Photos</span>
+                    <Image className="w-5 sm:w-6 h-5 sm:h-6 mb-1.5 sm:mb-2" />
+                    <span className="font-bold text-[10px] sm:text-xs tracking-tight">Photos</span>
                   </button>
 
                   {/* Framed Photo Toggle */}
                   <button 
                     type="button"
                     onClick={() => { setCategory('framed'); setQuantity(1); }}
-                    className={`flex flex-col items-center justify-center p-1 sm:p-3.5 rounded-lg sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    className={`flex flex-col items-center justify-center p-3.5 rounded-xl sm:rounded-2xl border transition-all duration-200 cursor-pointer ${
                       category === 'framed' 
                         ? 'bg-brand-orange-light border-brand-orange text-brand-orange shadow-[0_0_10px_rgba(249,115,22,0.05)]' 
                         : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-350 hover:text-dark-main'
                     }`}
                     id="btn-select-framed-type"
                   >
-                    <Gift className="w-4 sm:w-6 h-4 sm:h-6 mb-0.5 sm:mb-2" />
-                    <span className="font-bold text-[8px] xs:text-[9.5px] sm:text-xs tracking-tight">Framed</span>
+                    <Gift className="w-5 sm:w-6 h-5 sm:h-6 mb-1.5 sm:mb-2" />
+                    <span className="font-bold text-[10px] sm:text-xs tracking-tight">Framed</span>
                   </button>
 
                 </div>
               </div>
 
               {/* Step 2: Select Formats */}
-              <div className="mb-3.5 sm:mb-8">
-                <label className="block text-[8px] sm:text-[10px] md:text-xs font-bold text-gray-muted uppercase tracking-wider sm:tracking-widest mb-1.5 sm:mb-3">
+              <div className="mb-6 sm:mb-8">
+                <label className="block text-xs font-bold text-gray-muted uppercase tracking-widest mb-3">
                   2. Choose Specifications
                 </label>
                 
@@ -189,12 +189,13 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.2 }}
-                      className="grid grid-cols-2 gap-1 sm:gap-3"
+                      className="grid grid-cols-2 gap-2.5 sm:gap-3"
                       id="doc-suboptions"
                     >
                       <button
+                        type="button"
                         onClick={() => setDocType('bw')}
-                        className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[10px] sm:text-sm font-bold transition-all cursor-pointer ${
+                        className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                           docType === 'bw'
                             ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                             : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -204,8 +205,9 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                         B&W (R2)
                       </button>
                       <button
+                        type="button"
                         onClick={() => setDocType('color')}
-                        className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[10px] sm:text-sm font-bold transition-all cursor-pointer ${
+                        className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                           docType === 'color'
                             ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                             : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -222,14 +224,15 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-2 sm:space-y-4"
+                      className="space-y-4"
                       id="photo-suboptions"
                     >
                       {/* Photo size */}
-                      <div className="grid grid-cols-2 gap-1 sm:gap-3">
+                      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                         <button
+                          type="button"
                           onClick={() => setPhotoSize('jumbo')}
-                          className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[10px] sm:text-sm font-bold transition-all cursor-pointer ${
+                          className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                             photoSize === 'jumbo'
                               ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                               : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -239,8 +242,9 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                           Jumbo (R15)
                         </button>
                         <button
+                          type="button"
                           onClick={() => setPhotoSize('a4')}
-                          className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[10px] sm:text-sm font-bold transition-all cursor-pointer ${
+                          className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                             photoSize === 'a4'
                               ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                               : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -252,14 +256,15 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                       </div>
 
                       {/* Photo Finish Indicator */}
-                      <div className="pt-0.5 sm:pt-1.5" id="photo-finish-selector">
-                        <label className="block text-[7.5px] sm:text-xs font-semibold text-gray-muted tracking-wide mb-1 sm:mb-2">
+                      <div className="pt-1" id="photo-finish-selector">
+                        <label className="block text-xs font-semibold text-gray-muted tracking-wide mb-2">
                           Photo Finish (No price difference)
                         </label>
-                        <div className="grid grid-cols-2 gap-1 sm:gap-3">
+                        <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                           <button
+                            type="button"
                             onClick={() => setPhotoFinish('glossy')}
-                            className={`py-1 sm:py-2 px-1 sm:px-3 rounded-md sm:rounded-lg border text-[7.5px] xs:text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
+                            className={`py-2 px-3 rounded-lg border text-xs font-bold transition-all cursor-pointer ${
                               photoFinish === 'glossy'
                                 ? 'bg-brand-orange/20 border-brand-orange/30 text-brand-orange'
                                 : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -269,8 +274,9 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                             Shiny Glossy
                           </button>
                           <button
+                            type="button"
                             onClick={() => setPhotoFinish('matte')}
-                            className={`py-1 sm:py-2 px-1 sm:px-3 rounded-md sm:rounded-lg border text-[7.5px] xs:text-[10px] sm:text-xs font-bold transition-all cursor-pointer ${
+                            className={`py-2 px-3 rounded-lg border text-xs font-bold transition-all cursor-pointer ${
                               photoFinish === 'matte'
                                 ? 'bg-brand-orange/20 border-brand-orange/30 text-brand-orange'
                                 : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -289,15 +295,15 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-2 sm:space-y-4"
+                      className="space-y-4"
                       id="framed-suboptions"
                     >
                       {/* Framed types */}
-                      <div className="grid grid-cols-2 gap-1 sm:gap-3">
+                      <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                         <button
                           type="button"
                           onClick={() => setFramedSize('normal')}
-                          className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[9.5px] sm:text-sm font-bold transition-all cursor-pointer ${
+                          className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                             framedSize === 'normal'
                               ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                               : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -309,7 +315,7 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                         <button
                           type="button"
                           onClick={() => setFramedSize('customised')}
-                          className={`py-1.5 sm:py-3 px-1 sm:px-4 rounded-md sm:rounded-xl border text-[8px] xs:text-[9.5px] sm:text-sm font-bold transition-all cursor-pointer ${
+                          className={`py-2.5 sm:py-3.5 px-3 sm:px-4 rounded-xl border text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                             framedSize === 'customised'
                               ? 'bg-brand-orange/10 border-brand-orange text-brand-orange shadow-sm'
                               : 'bg-slate-50 border-gray-light-border text-gray-muted hover:border-slate-300'
@@ -321,7 +327,7 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                       </div>
 
                       {/* Frame Description Info */}
-                      <div className="p-1.5 sm:p-3 bg-brand-orange-light/50 border border-brand-orange/15 rounded-md sm:rounded-xl text-[7.5px] sm:text-xs text-slate-700 leading-normal">
+                      <div className="p-3 sm:p-4 bg-brand-orange-light/50 border border-brand-orange/15 rounded-xl text-xs text-slate-700 leading-relaxed">
                         <p className="font-bold text-brand-orange mb-0.5">💝 Splendid Gift Idea:</p>
                         <p className="hidden sm:block">Our customised framed photo option includes premium photo formatting and printing, perfect for celebrating special moments like Valentine’s, Anniversaries, Mother’s Day, or Father’s Day presents!</p>
                         <p className="sm:hidden">Includes premium photo formatting & design edits!</p>
@@ -332,19 +338,19 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
               </div>
 
               {/* Step 3: Quantity */}
-              <div className="mb-1">
-                <label className="block text-[8px] sm:text-xs font-bold text-gray-muted uppercase tracking-wider sm:tracking-widest mb-1.5 sm:mb-2.5">
+              <div className="mb-2">
+                <label className="block text-xs font-bold text-gray-muted uppercase tracking-widest mb-3">
                   3. Print Volume (Qty)
                 </label>
                 
-                <div className="flex items-center gap-1 sm:gap-4 bg-slate-50 rounded-lg sm:rounded-2xl p-0.5 sm:p-2 border border-gray-light-border w-full sm:w-60">
+                <div className="flex items-center gap-3 sm:gap-4 bg-slate-50 border border-gray-light-border rounded-xl p-1.5 w-full sm:w-60">
                   <button 
                     type="button"
                     onClick={() => handleQtyChange(-1)}
-                    className="w-5 sm:w-10 h-5 sm:h-10 rounded-md sm:rounded-xl bg-slate-200 hover:bg-slate-300 text-dark-main flex items-center justify-center p-0 transition-colors cursor-pointer"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-200 hover:bg-slate-300 text-dark-main flex items-center justify-center p-0 transition-colors cursor-pointer"
                     id="btn-qty-decrement"
                   >
-                    <Minus className="w-2.5 sm:w-4 h-2.5 sm:h-4 text-gray-600 hover:text-brand-orange" />
+                    <Minus className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-gray-600 hover:text-brand-orange" />
                   </button>
                   
                   <input 
@@ -352,17 +358,17 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
                     value={quantity} 
                     onChange={handleManualQtyChange}
                     min="1"
-                    className="flex-1 bg-transparent text-center font-extrabold text-[10px] sm:text-lg text-dark-main border-none focus:ring-0 select-all p-0"
+                    className="flex-1 bg-transparent text-center font-extrabold text-sm sm:text-lg text-dark-main border-none focus:ring-0 select-all p-0"
                     id="input-qty"
                   />
 
                   <button 
                     type="button"
                     onClick={() => handleQtyChange(1)}
-                    className="w-5 sm:w-10 h-5 sm:h-10 rounded-md sm:rounded-xl bg-slate-200 hover:bg-slate-300 text-dark-main flex items-center justify-center p-0 transition-colors cursor-pointer"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-200 hover:bg-slate-300 text-dark-main flex items-center justify-center p-0 transition-colors cursor-pointer"
                     id="btn-qty-increment"
                   >
-                    <Plus className="w-2.5 sm:w-4 h-2.5 sm:h-4 text-gray-600 hover:text-brand-orange" />
+                    <Plus className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-gray-600 hover:text-brand-orange" />
                   </button>
                 </div>
               </div>
@@ -370,30 +376,30 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
           </div>
 
           {/* Dynamic Total Side Panel */}
-          <div className="col-span-12 md:col-span-5 bg-gradient-to-b from-[#FFF7ED] to-white border border-brand-orange/30 rounded-xl sm:rounded-3xl p-3 sm:p-8 flex flex-col justify-between text-center relative overflow-hidden shadow-sm w-full mx-auto" id="estimator-panel-total">
+          <div className="col-span-12 md:col-span-5 bg-gradient-to-b from-[#FFF7ED] to-white border border-brand-orange/30 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between text-center relative overflow-hidden shadow-sm w-full mx-auto" id="estimator-panel-total">
             
             {/* Design accents */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#F97316] to-transparent" />
             
-            <div className="relative z-10">
-              <ClipboardCheck className="w-6 sm:w-10 h-6 sm:h-10 text-brand-orange mx-auto mb-2 sm:mb-6 opacity-90" />
-              <p className="text-[9px] sm:text-xs text-gray-muted font-bold uppercase tracking-wider mb-1 sm:mb-2">My Total Estimate Summary</p>
+            <div className="relative z-10 w-full flex flex-col">
+              <ClipboardCheck className="w-8 sm:w-10 h-8 sm:h-10 text-brand-orange mx-auto mb-4 sm:mb-6 opacity-90" />
+              <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-2">My Total Estimate Summary</p>
               
-              <div className="py-2.5 sm:py-8 border-y border-gray-light-border my-2 sm:my-4">
-                <span className="text-[9px] sm:text-xs text-gray-muted uppercase tracking-widest block mb-0.5">Estimated Total</span>
-                <span className="text-2xl sm:text-4xl md:text-5xl font-black text-dark-main" id="estimator-total-text">
-                  <span className="text-xs sm:text-base text-brand-orange mr-0.5">R</span>
+              <div className="py-5 sm:py-8 border-y border-gray-light-border my-4 sm:my-5">
+                <span className="text-xs text-gray-muted uppercase tracking-widest block mb-1">Estimated Total</span>
+                <span className="text-3xl sm:text-4xl md:text-5xl font-black text-dark-main" id="estimator-total-text">
+                  <span className="text-sm sm:text-base text-brand-orange mr-1">R</span>
                   {totalPrice.toFixed(2)}
                 </span>
                 
                 {/* Specific calculations callout */}
-                <span className="block text-[9px] sm:text-xs text-gray-muted mt-1.5 sm:mt-4 font-semibold italic">
+                <span className="block text-xs text-slate-500 mt-2 sm:mt-4 font-semibold italic">
                   {quantity} unit(s) x R {category === 'document' ? PRICING.document[docType] : category === 'photo' ? PRICING.photo[photoSize] : PRICING.framed[framedSize]}
                 </span>
               </div>
 
               {/* Informative info item */}
-              <div className="text-[9.5px] sm:text-xs text-slate-700 flex flex-col gap-0.5 text-left bg-brand-orange-light/40 p-2 sm:p-3.5 rounded-lg sm:rounded-xl border border-brand-orange/10 mb-3 sm:mb-6">
+              <div className="text-xs text-slate-700 flex flex-col gap-1.5 text-left bg-brand-orange-light/50 p-4 rounded-xl border border-brand-orange/15 mb-6 sm:mb-8">
                 <p className="font-bold text-dark-main">💡 File Delivery Information:</p>
                 <p className="leading-relaxed">Tap below to order via WhatsApp. Just attach your document or photo files in the chat and we'll start printing!</p>
               </div>
@@ -401,10 +407,10 @@ Please let me know how I should send my digital files (PDF, images, etc.) to sta
 
             <button
               onClick={sendOrderOverWhatsApp}
-              className="relative z-10 w-full mt-auto flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-hover text-white font-extrabold px-3 sm:px-6 py-2.5 sm:py-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-xs sm:text-base cursor-pointer"
+              className="relative z-10 w-full mt-auto flex items-center justify-center gap-3 bg-brand-orange hover:bg-brand-orange-hover text-white font-extrabold px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 text-sm sm:text-base cursor-pointer"
               id="btn-send-estimated-order"
             >
-              <Send className="w-3.5 h-3.5 fill-current" />
+              <Send className="w-4 h-4 fill-current" />
               <span>Send Order over WhatsApp</span>
             </button>
 
