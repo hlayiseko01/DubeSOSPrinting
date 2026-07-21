@@ -42,21 +42,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18">
-          {/* Logo */}
+          {/* Logo (use image assets) */}
           <div className="flex-shrink-0 flex items-center">
-            <a 
-              href="#" 
-              onClick={(e) => { 
-                e.preventDefault(); 
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-              }} 
-              className="flex items-center gap-2 group"
+              }}
+              className="flex items-center gap-3 group"
               id="nav-logo"
             >
-              <div className="p-2 rounded-xl bg-brand-orange-light border border-brand-orange/20 group-hover:border-brand-orange/40 group-hover:bg-brand-orange/10 transition-all">
-                <Printer className="w-5 h-5 text-brand-orange group-hover:scale-110 transition-transform" />
-              </div>
-              <span className="font-extrabold text-xl tracking-tight text-dark-main">
+              <img src="/assets/logo.png" alt="DubeSOS Printing logo" className="h-8 w-auto object-contain" />
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-dark-main">
                 DubeSOS<span className="text-brand-orange">Printing</span>
               </span>
             </a>

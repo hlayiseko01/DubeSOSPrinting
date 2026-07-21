@@ -15,9 +15,7 @@ export default function Footer() {
         
         {/* Left Footer Label */}
         <div className="flex items-center gap-2" id="footer-logo">
-          <div className="p-1.5 rounded-lg bg-white/5 border border-white/10">
-            <Printer className="w-4 h-4 text-brand-orange" />
-          </div>
+          <img src="/assets/logo.png" alt="DubeSOS Printing" className="h-8 w-auto object-contain" />
           <span className="font-bold text-sm tracking-tight text-white">
             DubeSOS<span className="text-brand-orange">Printing</span>
           </span>
