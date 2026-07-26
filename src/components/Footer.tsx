@@ -57,7 +57,7 @@ export default function Footer() {
       {/* Bottom Copyright Block */}
       <div className="max-w-6xl mx-auto border-t border-slate-800/50 mt-8 pt-8 text-center" id="footer-copyright-container">
         <p className="text-xs text-slate-500">
-          © 2025 DubeSOS Printing. All rights reserved.
+          © 2026 DubeSOS Printing. All rights reserved.
         </p>
       </div>
     </footer>
