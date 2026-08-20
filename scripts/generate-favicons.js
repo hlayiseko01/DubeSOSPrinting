@@ -1,15 +1,18 @@
 // generate-favicons.js
-// Generates optimized PNG favicons from `assets/logo.jpeg` into `assets/icons/`.
+// Generates optimized PNG favicons from `public/assets/logo.png` into `public/`.
 // Usage: `node ./scripts/generate-favicons.js` or `npm run generate:assets` after installing dependencies.
 
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
-const pngToIco = require('png-to-ico');
+import sharp from 'sharp';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import pngToIco from 'png-to-ico';
 
-const src = path.resolve(__dirname, '../assets/logo.jpeg');
-const srcFull = path.resolve(__dirname, '../assets/logo_with_Name.jpeg');
-const outDir = path.resolve(__dirname, '../assets/icons');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const src = path.resolve(__dirname, '../public/assets/logo.png');
+const srcFull = path.resolve(__dirname, '../public/assets/logo_with_Name.png');
+const outDir = path.resolve(__dirname, '../public');
 
 if (!fs.existsSync(src)) {
   console.error('Source image not found at', src);
@@ -19,7 +22,7 @@ if (!fs.existsSync(src)) {
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
 // PNG sizes to generate
-const pngSizes = [16, 32, 48, 64, 128, 256, 512];
+const pngSizes = [16, 32, 48, 64, 128, 192, 256, 512];
 
 (async () => {
   try {
@@ -51,8 +54,7 @@ const pngSizes = [16, 32, 48, 64, 128, 256, 512];
     }
 
     // create multi-resolution favicon.ico using a subset of generated PNGs
-    const icoSources = [16, 32, 48, 64, 128].map(s => path.join(outDir, `favicon-${s}.png`));
-    const icoBuffer = await pngToIco(icoSources);
+    const icoBuffer = await pngToIco(path.join(outDir, 'favicon-256.png'));
     const icoPath = path.join(outDir, 'favicon.ico');
     fs.writeFileSync(icoPath, icoBuffer);
     console.log('Written', icoPath);
